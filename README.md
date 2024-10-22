@@ -6,7 +6,9 @@ Para poder demostrar y aprender la creación y consumo de Interfaces de Programa
 |No.|Fecha|Descripción|Potenciador|Estatus|
 |----|----|----|----|----|
 |8.|17/10/2024|Nuevo repositorio del proyecto implementado .gitignore|1|Activa|
+|9.|22/10/2024|Creación de una Aplicación Web usando Express|11|Activa|
+
 ## Autor
-Adrian Pérez Jiménez
+**Adrian Pérez Jiménez** / [@heidrihen52](https://github.com/heidrihen52)
 Unidad 2Aplicaciones Web Orientadas a Servicios
 Octubre 2024

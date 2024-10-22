@@ -5,9 +5,12 @@ Para poder demostrar y aprender la creación y consumo de Interfaces de Programa
 ## Historial de Prácticas
 |No.|Fecha|Descripción|Potenciador|Estatus|
 |----|----|----|----|----|
-|8.|17/10/2024|Nuevo repositorio del proyecto implementado .gitignore|1|Activa|
-|9.|22/10/2024|Creación de una Aplicación Web usando Express|11|Activa|
+|8.|17/10/2024|Nuevo repositorio del proyecto implementado .gitignore|1|Finalizada|
+|9.|22/10/2024|Creación de una Aplicación Web usando Express|12|Activa|
 
+## Tech Stack
+![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 ## Autor
 **Adrian Pérez Jiménez** / [@heidrihen52](https://github.com/heidrihen52)
 Unidad 2Aplicaciones Web Orientadas a Servicios

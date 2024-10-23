@@ -6,6 +6,8 @@
 //instanciar nuestra aplicacion web
 
 import express from'express'
+import generalRoutes from'./routes/generalRoutes.js'
+import userRoutes from'./routes/userRoutes.js'
 const app= express()
 
 const port = 3000
@@ -14,19 +16,9 @@ app.listen(port,()=>{
 })
 
 //Ruta (Routing-enrutamiento para petuiciones)
-app.get("/", function(req,res){
-    res.send("Hola desde la web, en NodeJS")
-})
-
-app.get("/quieneres", function(req,res){
-    res.json(
-        {
-            "nombre":"Adrian Perez Jimenez",
-            "Carrera": "DSM",
-            "Grado":"4",
-            "Grupo":"A"
-        }
-    )
-})
+app.use('/',generalRoutes)//si se coloca otro igual, con el moismo verbo, será ignorado el siguiente
+app.use('/usuario',userRoutes);
 //
+
+
 

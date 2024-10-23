@@ -1,12 +1,12 @@
 {
-  "name": "mx.utxj.ti.awos.bienesraices",
+  "name": "y",
   "version": "1.0.0",
   "description": "Proyecto de Clase para la unidad 2, de AWOS utilizando Node.js",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "saluda":"node saluda.js",
-    "server":"nodemon index.js"
+    "saluda": "node saluda.js",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",

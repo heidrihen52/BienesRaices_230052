@@ -6,7 +6,8 @@ Para poder demostrar y aprender la creación y consumo de Interfaces de Programa
 |No.|Fecha|Descripción|Potenciador|Estatus|
 |----|----|----|----|----|
 |8.|17/10/2024|Nuevo repositorio del proyecto implementado .gitignore|1|Finalizada|
-|9.|22/10/2024|Creación de una Aplicación Web usando Express|12|Activa|
+|9.|22/10/2024|Creación de una Aplicación Web usando Express|12|Finalizada|
+|10.|23/10/2024|Operaciones Básicas de un API a través de los verbos http|12|Pendiente|
 
 ## Tech Stack
 ![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)

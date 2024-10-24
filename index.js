@@ -9,6 +9,9 @@ import express from'express'
 import generalRoutes from'./routes/generalRoutes.js'
 import userRoutes from'./routes/userRoutes.js'
 const app= express()
+//configurar template engine (PUG)
+app.set('view engine','pug')
+app.set('views','./views')
 
 const port = 3000
 app.listen(port,()=>{

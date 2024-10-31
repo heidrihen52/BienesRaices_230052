@@ -35,6 +35,7 @@ router.delete("/deleteUser/:email",function(req,res){
 })
 
 
+
 router.get("/login",formularioLogin/**middleware */)
 router.get("/createAccount",formularioRegister)
 router.get("/passwordrecovery",formularioPasswordRecovery)

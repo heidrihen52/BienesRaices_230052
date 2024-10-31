@@ -1,2 +1,13 @@
-div 
-    h2.text-center Crea tu cuenta de usuario
+extends ../layout/index 
+block contenido 
+    div.py-10
+        h1.text-4xl.my-10.font-extrabold.text-center.text-green-800 Bienes 
+            span.font-normal.text-orange-600 Raices
+        h2.text-center.text-2xl.font-extrabold Crea una cuenta 
+        .mt-8.auto.max-w-md
+            .bg-white.pv-8.px-4.shadow
+                form
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="nombre") Tu Nombre 
+                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                        (placeholder="Tu Nombre type="text" name="nombre")

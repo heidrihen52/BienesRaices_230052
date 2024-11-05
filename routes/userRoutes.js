@@ -1,4 +1,5 @@
-import express, { request, response } from'express'
+import express, { application, request, response } from'express'
+import { formularioLogin, formularioRegister,formularioPasswordRecovery } from '../controllers/userController.js';
 const router=express.Router();
 
 //Get se utiliza para lalectura de datos e informacion
@@ -20,17 +21,24 @@ router.put("/replaceUserByEmail/:name/:email/:password", function(a,b){//no es c
 })
 //PATCH - Se utiliza para la actualizacion parcial de datos
 router.patch("/updatePassword/:email/:newPassword/:newPasswordConfirm",function(request,response){
-    const {email,newPassword,passConfirm} = request.params //Desestructuracion de un objeto
+    const {email,newPassword,newPasswordConfirm} = request.params //Desestructuracion de un objeto
     
-    if(newPassword==passConfirm){
-    response.send(`Se ha solicitado la actualizacion de la contraseña del usuario con correo: ${email}, con la nueva conbtraseña: ${newPassword}, se aceptan los cmabios ya que la contraseña y confirmacion son la misma`)
+    if(newPassword===newPasswordConfirm){
+    response.send(`Se ha solicitado la actualizacion de la contraseña del usuario con correo: ${email}, con la nueva contraseña: ${newPassword}, se aceptan los cmabios ya que la contraseña y confirmacion son la misma`)
     }else{
-        response.send(`Se ha solicitado la actualizacion de la contraseña del usuario con correo: ${email}, con la nueva conbtraseña: ${newPassword}, pero se rechaza el cambio dado que la nueva contraseña y su confirmación no coinciden`)
+        response.send(`Se ha solicitado la actualizacion de la contraseña del usuario con correo: ${email}, con la nueva contraseña: ${newPassword}, pero se rechaza el cambio dado que la nueva contraseña y su confirmación no coinciden`)
     }
 });
 //DELETE
 router.delete("/deleteUser/:email",function(req,res){
     res.send(`Se ha solicitado la eliminacion del usuario asociado al correo: ${req.params.email}`)
 })
+
+
+
+router.get("/login",formularioLogin/**middleware */)
+router.get("/createAccount",formularioRegister)
+router.get("/passwordrecovery",formularioPasswordRecovery)
+
 export default router;
 

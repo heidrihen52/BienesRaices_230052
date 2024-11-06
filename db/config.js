@@ -1,4 +1,4 @@
-import  Sequelize  from "sequelize";
+import  Sequelize  from "sequelize"
 
 const db = new Sequelize('bienes_raices_230052','adrian.jimenez','1234',{
     host: 'localhost',

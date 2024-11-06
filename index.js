@@ -12,10 +12,10 @@ import db from'./db/config.js'
 const app= express()
 //conexion a la base de datos
 try {
-    await db.authenticae();
+    await db.authenticate();
     console.log("Conexion exitosa a la base de datos")
 } catch (error) {
-    
+    console.log(error)
 }
 //configurar template engine (PUG)
 app.set('view engine','pug')

@@ -12,6 +12,7 @@ export default {
       'orange': '#FF6F00',
       'beige': '#D4B88C',
       'gray': '#606060',
+      'red':'#FE0000',
       'bubblegum': '#ff77e9',
       'bermuda': '#78dcca',
     },

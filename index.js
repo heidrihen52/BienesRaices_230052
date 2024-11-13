@@ -9,10 +9,17 @@ import express from'express'
 import generalRoutes from'./routes/generalRoutes.js'
 import userRoutes from'./routes/userRoutes.js'
 import db from'./db/config.js'
+
+//Crear la app
 const app= express()
+
+//Habilitar la lectura de datos de formularios
+app.use(express.urlencoded({extended:true}))
+
 //conexion a la base de datos
 try {
     await db.authenticate();
+    db.sync()
     console.log("Conexion exitosa a la base de datos")
 } catch (error) {
     console.log(error)

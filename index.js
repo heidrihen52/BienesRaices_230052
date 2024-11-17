@@ -10,6 +10,7 @@ import generalRoutes from'./routes/generalRoutes.js'
 import userRoutes from'./routes/userRoutes.js'
 import db from'./db/config.js'
 
+
 //Crear la app
 const app= express()
 

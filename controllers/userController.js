@@ -1,6 +1,8 @@
 import {check, validationResult} from 'express-validator'
 import newUser from '../models/User.js'
 import { where } from 'sequelize'
+import {generateId} from '../helpers/tokens.js'
+import{emailRegister}from '../helpers/emails.js'
 //import newUser from '../models/User.js'
 //import newUser from '../models/User.js'
 
@@ -37,7 +39,7 @@ const register = async (request, response) => {
             }
         })
     }
-    //Extrare los datos
+    //Extraer los datos del usuario 
     const {nombre, email, password} = request.body
     ///verificar que el usuario no existe previamente en la bd
     const existingUser = await newUser.findOne({where: {email}})
@@ -55,12 +57,27 @@ const register = async (request, response) => {
     console.log(request.body)
 
     //Registramos los datos en la base de datos
-    await newUser.create({
+    const user = await newUser.create({
         nombre,
         email,
         password,
-        token: 123
-    });
+        token: generateId()
+    })
+    ;
+    //Enviar mensaje de confirmacion
+    emailRegister({
+        name: user.nombre,
+        email: user.email,
+        token: user.token
+    })
+    
+
+
+
+    response.render('templates/message',{
+        page: 'Cuenta creada satisfactoriamente. ',
+        msg: 'Hemos enviado un correo a : '+ email +' , para la confirmación de cuenta'
+    })
 
     //response.json(result.array())
     //const user = await newUser.create(request.body)

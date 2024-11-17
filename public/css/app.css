@@ -595,13 +595,13 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(47 133 90 / var(--tw-bg-opacity));
 }
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
 .bg-red {
   --tw-bg-opacity: 1;
   background-color: rgb(254 0 0 / var(--tw-bg-opacity));
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .p-2 {
   padding: 0.5rem;
@@ -680,6 +680,10 @@ video {
 .text-orange {
   --tw-text-opacity: 1;
   color: rgb(255 111 0 / var(--tw-text-opacity));
+}
+.text-red {
+  --tw-text-opacity: 1;
+  color: rgb(254 0 0 / var(--tw-text-opacity));
 }
 .text-white {
   --tw-text-opacity: 1;

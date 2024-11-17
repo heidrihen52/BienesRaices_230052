@@ -1,5 +1,5 @@
 import express, { application, request, response } from'express'
-import { formularioLogin, formularioRegister,register,formularioPasswordRecovery } from '../controllers/userController.js';
+import { formularioLogin, formularioRegister,register,confirm,formularioPasswordRecovery } from '../controllers/userController.js';
 const router=express.Router();
 
 //Get se utiliza para lalectura de datos e informacion
@@ -40,7 +40,7 @@ router.get("/login",formularioLogin/**middleware */)
 
 router.get("/createAccount",formularioRegister)
 router.post("/createAccount",register)
-
+router.get("/confirm/:token",confirm)
 router.get("/passwordrecovery",formularioPasswordRecovery)
 
 export default router;

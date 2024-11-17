@@ -3,6 +3,7 @@ import newUser from '../models/User.js'
 import { where } from 'sequelize'
 import {generateId} from '../helpers/tokens.js'
 import{emailRegister}from '../helpers/emails.js'
+
 //import newUser from '../models/User.js'
 //import newUser from '../models/User.js'
 
@@ -71,7 +72,7 @@ const register = async (request, response) => {
         token: user.token
     })
     
-
+    
 
 
     response.render('templates/message',{
@@ -90,10 +91,17 @@ const formularioPasswordRecovery = (request,response)=>{
     })
 }
 
+//FUnción que comprueba una cuenta
+const confirm =(request,response) =>{
+    
+    console.log(request.params.token)
+}
+
 
 export{
     formularioLogin,
     formularioRegister,
     register,
+    confirm,
     formularioPasswordRecovery
 }

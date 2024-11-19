@@ -5,7 +5,7 @@ block contenido
             span.font-normal.text-orange Raices
         h2.text-center.text-2xl.font-extrabold Inicia Sesión 
         .mt-8.mx-auto.max-w-md
-            .bg-white.py-8.px-4.shadow
+            .bg-white.py-8.px-4.shadow-md.rounded-md
                 form(action="").space-y-5.px-6
                     div 
                         label.block.text-sm.uppercase.text-gray.mb-3.font-bold(for="correo_usuario") Correo Electronico
@@ -17,5 +17,5 @@ block contenido
                     .flex.items-center.justify-between
                         a.text-gray.text-xs(href="./createAccount"  class="hover:underline hover:decoration-2 hover:decoration-orange") ¿No tienes cuenta? Cea una cuenta
                         a.text-gray.text-xs(href="./passwordRecovery"  class="hover:underline hover:decoration-2 hover:decoration-orange") Olvidé mi contraseña 
-                    input(class="w-full bg-green hover:bg-orange text-white font-bold py-3 cursor-pointer" type="submit" value="Crear Cuenta")
+                    input(class="w-full bg-green hover:bg-orange text-white font-bold py-3 cursor-pointer rounded-md" type="submit" value="Crear Cuenta")
                         

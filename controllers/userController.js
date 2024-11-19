@@ -77,7 +77,8 @@ const register = async (request, response) => {
 
     response.render('templates/message',{
         page: 'Cuenta creada satisfactoriamente. ',
-        msg: 'Hemos enviado un correo a : '+ email +' , para la confirmación de cuenta'
+        msg: 'Hemos enviado un correo a: <span class="underline text-blue-600">' + email + '</span>, para la confirmación de cuenta'
+
     })
 
     //response.json(result.array())

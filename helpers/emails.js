@@ -31,7 +31,7 @@ const emailRegister = async(data) => {
                   <div class="changes" style="margin-top: 20px; background-color: #f9f9f9; border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
                       <h3 style="text-align: center; font-size: 16px; color: #333; margin: 0 0 10px;">Haz clic en el siguiente enlace para confirmar tu cuenta:</h3>
                       <ul style="list-style: none; text-align: center; padding: 0; margin: 0;">
-                          <li><a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/usuario/confirm/${token}" style="font-size: 14px; color: #666; text-decoration: none;">Confirmar tu cuenta</a></li>
+                          <li><a href="${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/usuario/confirm/${token}" style="font-size: 14px; color: #666; text-decoration: none;">Confirmar tu cuenta</a></li>
                       </ul>
                   </div>
                   <p style="text-align: justify; font-size: 14px; color: #666;">Si no reconoces esta solicitud o no creaste una cuenta, por favor ignora este mensaje. Gracias por elegir Bienes Raíces. ¡Estamos emocionados de ayudarte a encontrar la propiedad de tus sueños!</p>

@@ -11,6 +11,7 @@ export default {
       'green': '#2F855A',
       'orange': '#FF6F00',
       'beige': '#D4B88C',
+      'blue':'#0000FF',
       'lbeige': '#FFF6F2',
       'gray': '#606060',
       'red':'#FE0000',

@@ -35,6 +35,7 @@ block contenido
         .mt-8.mx-auto.max-w-md
             .bg-white.py-8.px-4.shadow-md.rounded-md
                 form.space-y-5.px-6(method="POST" action="/usuario/createAccount")
+                    input(type="hidden" name="_csrf" value= csrfToken)
                     div 
                         label.block.text-sm.uppercase.text-gray.mb-3.font-bold Tu Nombre 
                         input#nombre.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="text" placeholder="ingresa tu nombre con apellidos" name="nombre" value= user ? user.nombre:'')

@@ -1,26 +1,55 @@
 extends ../layout/index 
 block contenido 
     div.py-10
-        h1.text-center.text-4xl.my-10.font-extrabold.text-center.text-green-800 Bienes 
-            span.font-normal.text-orange-600 Raices
-        h2.text-center.text-2xl.font-extrabold Crea una cuenta 
+        h1.text-center.text-4xl.my-10.font-extrabold.text-center.text-green Bienes 
+            span.font-normal.text-orange Raices
+        h2.text-center.text-2xl.font-extrabold Crea una cuenta
+        if errors
+            div(class="max-w-md mx-auto my-10")
+                each error, index in errors
+                    div(id="error-#{index}" class="flex items-center p-4 mb-4 text-sm text-reds border border-reds rounded-lg bg-red1 dark:text-reds dark:border-reds alert" role="alert")
+                        svg(class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20")
+                            path(d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z")
+                        span(class="sr-only") Info
+                        div
+                            span(class="font-medium") 
+                            | #{error.msg}
+            style.
+                .alert {
+                    animation: hideAlert 5s forwards;
+                }
+
+                @keyframes hideAlert {
+                    0% {
+                        opacity: 1;
+                    }
+                    99% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 0;
+                        visibility: hidden;
+                        display: none;
+                    }
+                }                
         .mt-8.mx-auto.max-w-md
-            .bg-white.pv-8.px-4.shadow
-                form(action="").space-y-5.px-6
+            .bg-white.py-8.px-4.shadow-md.rounded-md
+                form.space-y-5.px-6(method="POST" action="/usuario/createAccount")
+                    input(type="hidden" name="_csrf" value= csrfToken)
                     div 
-                        label.block.text-sm.uppercase.text-gray-600.mb-3.font-bold(for="nombre_usuario") Tu Nombre 
-                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400( type="text" placeholder="INgresa tu nombre con apellidos" nombre="nombre_usuario")
+                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold Tu Nombre 
+                        input#nombre.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="text" placeholder="ingresa tu nombre con apellidos" name="nombre" value= user ? user.nombre:'')
                     div 
-                        label.block.text-sm.uppercase.text-gray-600.mb-3.font-bold Correo:
-                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder.gray-400( type="email" placeholder="ej: usuario@dominio.com" name="correo_usuario")
+                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold Correo:
+                        input#email.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="email" placeholder="ej: usuario@dominio.com" name="email" value= user ? user.email:'')
                     div 
-                        label.block.text-sm.uppercase.text-gray-600.mb-3.font-bold Contraseña: 
-                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder.gray-400( type="password" placeholder="minimo de 8 caracteres" name="pass_usuario")
+                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold Contraseña: 
+                        input#email.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="password" placeholder="minimo de 8 caracteres" name="password")
                     div 
-                        label.block.text-sm.uppercase.text-gray-600.mb-3.font-bold Confirmación: 
-                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder.gray-400( type="password" placeholder="minimo de 8 caracteres, igual a la anterior" name="pass2_usuario")
+                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold Confirmación: 
+                        input#email.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="password" placeholder="minimo de 8 caracteres, igual a la anterior" name="pass2_usuario")
                     .flex.items-center.justify-between
-                        a.text-gray-500.text-xs(href="./login"  class="hover:underline hover:decoration-2 hover:decoration-red-600") ¿Ya tienes cuenta? Inicia sesión
-                        a.text-gray-500.text-xs(href="./passwordRecovery"  class="hover:underline hover:decoration-2 hover:decoration-red-600") Olvidé mi contraseña 
-                    input(class="w-full bg-orange-600 hover:bg-green-600 text-white font-bold py-3 cursor-pointer" type="submit" value="Crear Cuenta")
+                        a.text-gray.text-xs(href="./login"  class="hover:underline hover:decoration-2 hover:decoration-orange") ¿Ya tienes cuenta? Inicia sesión
+                        a.text-gray.text-xs(href="./passwordRecovery"  class="hover:underline hover:decoration-2 hover:decoration-orange") Olvidé mi contraseña 
+                    input(class="w-full bg-green hover:bg-orange text-white font-bold py-3 cursor-pointer rounded-md" type="submit" value="Crear Cuenta")
                         

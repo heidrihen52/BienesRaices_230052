@@ -9,6 +9,7 @@ Para poder demostrar y aprender la creación y consumo de Interfaces de Programa
 |9.|22/10/2024|Creación de una Aplicación Web usando Express|12|Finalizada|
 |10.|23/10/2024|Operaciones Básicas de un API a través de los verbos http|12|Finalizada|
 |11.|5/11/2024|Inicialización de las pantallas de registro, login y recuperación de contraseña|13|Finalizada|
+|12.|20/11/2024|Implementación de la funcionalidad del registro de Cuentas de Usuario|30|Activa|
 
 ## Tech Stack
 ![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)

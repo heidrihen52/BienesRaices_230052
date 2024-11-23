@@ -6,6 +6,10 @@
         type: DataTypes.STRING,
         allowNull: false
     },
+    fechaNac:{
+        type:DataTypes.DATE,
+        allowNull:false
+    },
     email: {
         type:DataTypes.STRING,
         allowNull: false,
@@ -18,7 +22,7 @@
     },      
     token: DataTypes.STRING ,
     confirmado: DataTypes.BOOLEAN
- }, {
+}, {
     hooks:{
         //generamos la clave para el haseho, se recomiendan 10 rondas de aleatorizacion para no consumir demasiados recursos de hardware y hacer lento el proceso
         beforeCreate: async function (user) {

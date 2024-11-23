@@ -1,21 +1,69 @@
 extends ../layout/index 
 block contenido 
-    .py-10
-        h1.text-center.text-4xl.my-10.font-extrabold.text-center.text-green Bienes 
+    div.py-10
+        h1.text-center.text-4xl.my-10.font-extrabold.text-center.text-green Bienes
             span.font-normal.text-orange Raices
         h2.text-center.text-2xl.font-extrabold Inicia Sesión 
+        if errors
+                div(class="max-w-md mx-auto my-10")
+                    each error, index in errors
+                        div(id="error-#{index}" class="flex items-center p-4 mb-4 text-sm text-reds border border-reds rounded-lg bg-red1 dark:text-reds dark:border-reds alert" role="alert")
+                            svg(class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20")
+                                path(d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z")
+                            span(class="sr-only") Info
+                            div
+                                span(class="font-medium") 
+                                | #{error.msg}
+                style.
+                    .alert {
+                        animation: hideAlert 5s forwards;
+                    }
+
+                    @keyframes hideAlert {
+                        0% {
+                            opacity: 1;
+                        }
+                        99% {
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 0;
+                            visibility: hidden;
+                            display: none;
+                        }
+                    }
+        
         .mt-8.mx-auto.max-w-md
-            .bg-white.py-8.px-4.shadow-md.rounded-md
+            .bg-white.py-8.px-4.shadow-md.rounded-md.justify-center
                 form(action="").space-y-5.px-6
                     div 
-                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold(for="correo_usuario") Correo Electronico
-                        input#nombre.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder-gray( type="email" placeholder="Ingresa tu correo" nombre="correo_usuario")
+                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold Correo Electronico
+                        input#email.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder-gray( type="email" placeholder="Ingresa tu correo" name="email")
                     div 
                         label.block.text-sm.uppercase.text-gray.mb-3.font-bold Contraseña:
-                        input#email.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="password" placeholder="ingresa tu contraseña" name="pass_usuario")
-                  
+                        input#password.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="password" placeholder="ingresa tu contraseña" name="password")
+                    
                     .flex.items-center.justify-between
-                        a.text-gray.text-xs(href="./createAccount"  class="hover:underline hover:decoration-2 hover:decoration-orange") ¿No tienes cuenta? Cea una cuenta
-                        a.text-gray.text-xs(href="./passwordRecovery"  class="hover:underline hover:decoration-2 hover:decoration-orange") Olvidé mi contraseña 
-                    input(class="w-full bg-green hover:bg-orange text-white font-bold py-3 cursor-pointer rounded-md" type="submit" value="Crear Cuenta")
+                        a.text-gray.text-xs(href="./createAccount" class="hover:underline hover:decoration-2 hover:decoration-orange") ¿No tienes cuenta? Crea una cuenta
+                        a.text-gray.text-xs(href="./passwordRecovery" class="hover:underline hover:decoration-2 hover:decoration-orange") Olvidé mi contraseña 
+                    input(class="w-full bg-green hover:bg-orange text-white font-bold py-3 cursor-pointer rounded-md" type="submit" value="Acceder")
+                .mt-5
+                        p(class="text-center text-gray font-bold")
+                            | o accede con
                         
+                        ul.flex.justify-center.items-center.gap-6
+                            li
+                                a(href="#" class="flex justify-center items-center")
+                                    i(class="fab fa-google text-green text-4xl")
+                            li
+                                a(href="#" class="flex justify-center items-center")
+                                    i(class="fas fa-cloud text-green text-4xl")
+                            li
+                                a(href="#" class="flex justify-center items-center")
+                                    i(class="fas fa-envelope text-green text-4xl")
+                            li
+                                a(href="#" class="flex justify-center items-center")
+                                    i(class="fab fa-facebook text-green text-4xl")
+
+
+                                

@@ -1,7 +1,7 @@
 extends ../layout/index 
 block contenido 
     div.py-10
-        h1.text-center.text-4xl.my-10.font-extrabold.text-center.text-green Bienes 
+        h1.text-center.text-4xl.my-10.font-extrabold.text-center.text-green Bienes
             span.font-normal.text-orange Raices
         h2.text-center.text-2xl.font-extrabold Crea una cuenta
         if errors
@@ -39,6 +39,9 @@ block contenido
                     div 
                         label.block.text-sm.uppercase.text-gray.mb-3.font-bold Tu Nombre 
                         input#nombre.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="text" placeholder="ingresa tu nombre con apellidos" name="nombre" value= user ? user.nombre:'')
+                    div 
+                        label.block.text-sm.uppercase.text-gray.mb-3.font-bold Fecha de nacimiento 
+                        input#fechaNac.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="date" name="fechaNac")
                     div 
                         label.block.text-sm.uppercase.text-gray.mb-3.font-bold Correo:
                         input#email.w-full.px-3.py-2.border.border-gray.rounded-md.placeholder.gray( type="email" placeholder="ej: usuario@dominio.com" name="email" value= user ? user.email:'')

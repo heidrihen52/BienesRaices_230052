@@ -3,7 +3,7 @@ import newUser from '../models/User.js'
 import { where } from 'sequelize'
 import moment from 'moment';
 import {generateId} from '../helpers/tokens.js'
-import{emailRegister}from '../helpers/emails.js'
+import{emailChangePassword, emailRegister}from '../helpers/emails.js'
 import { request, response } from 'express'
 
 const formularioLogin = (request,response)=>{
@@ -90,6 +90,7 @@ const register = async (request, response) => {
                 fechaNac: request.body.fechaNac
             }
         })
+        
     }
     console.log("Registrando un nuevo usuario")
     console.log(request.body)
@@ -141,6 +142,7 @@ const formularioPasswordRecovery = (request,response)=>{
 
 const resetPassword = async (request, response)=>{
     //Validacion de los campos que se reciben en el formulario
+    console.log("Cambiando la contraseña de un usuario")
     
     await check('email').notEmpty().withMessage("El correo electronico es un campo obligatirio").isEmail().withMessage("El correo electronico no tiene el formato de: usuraio@dominio.extension").run(request)
    
@@ -159,20 +161,38 @@ const resetPassword = async (request, response)=>{
 
     //Buscar al usuario
     const{email} = request.body
-    const user = await newUser.findOne({where: {email}})
-    if(!user){
+    const existingUser = await newUser.findOne({where: {email, confirmado:1}})
+    if(!existingUser){
         return response.render('auth/passwordRecovery',{
-            page: 'Recupera tu contraseña',
+            page: 'Error, no existe una cuenta autentificada asociada al correo electronico',
             csrfToken : request.csrfToken(),
-            errors: [{msg: 'El email no pertenece a ningun usuario'}]
+            errors: [{msg: 'El email no pertenece a ningun usuario'}],
+            user:{
+                email
+            }
         })
     }
+    existingUser.password="null"
+    existingUser.token=generateId()
+    existingUser.save()
     //generar token y enviar correo
-    user.token = generateId()
-    await user.save()
+    //usuario.token = generateId()
+    //await usuario.save()
 
     //Enviar un email
+    emailChangePassword({
+        name: existingUser.name,
+        email: existingUser.email,
+        token: existingUser.token
+    })
     //renderizar un mensaje
+    response.render('templates/message',{
+        page: 'Reseteo de contraseña. ',
+        msg: 'Hemos enviado un correo a: ',
+        email: email,
+        msg2:', para el reseteo e contraseña'
+
+    })
 }
 
 //FUnción que comprueba una cuenta
@@ -204,6 +224,63 @@ const confirm = async (request,response) =>{
     
 }
 
+const verifyTokenPasswordChange=async(request,response)=>{
+    
+    const {token} = request.params
+    const userTokenOwner=await newUser.findOne({where:{token}})
+    if(!userTokenOwner){
+        return response.render('auth/passwordRecovery',{
+            page: 'Error',
+            csrfToken : request.csrfToken(),
+            msg:'El token ha expirado o no existe'
+        })
+    }
+    //mostrar formulario para modificar el password
+    response.render('auth/reset-password',{
+        
+        page: 'reset password',
+        csrfToken : request.csrfToken()
+    })
+    return 0;
+}
+const updatePassword =async (request, response)=>{
+    //validar campos de contraseñas
+    await check('new_password').notEmpty().withMessage("La contraseña es un campo obligatorio").isLength({min:8}).withMessage("La contraseña debe de ser de almenos 8 caracteres").run(request)
+    await check('confirm_new_password').equals(request.body.new_password).withMessage("La contraseña y su confirmacion deben coincidir").run(request)
+
+    let result = validationResult(request)
+
+    //verificamos si hay errores de validacion
+    if(!result.isEmpty()){
+        //errores
+        const {token}= request.params
+        return response.render('auth/reset-password',{
+            page: 'Error al intentar cambiar la contraseña',
+            csrfToken : request.csrfToken(),
+            errors: result.array(),
+            token: token
+        })
+    }
+
+    //Actualizar en la base de datos
+    const {token} = request.params
+    const userTokenOwner= await newUser.findOne({where:{token}})
+
+    userTokenOwner.password=request.body.new_password
+    userTokenOwner.token=null;
+    userTokenOwner.save();//Update tb_users set password=new_passord where token=token
+
+    //Renderizar la respuesta
+    response.render('auth/confirm',{
+        page: 'Excelente..!',
+        msg: 'Tu contraseña se ha cambiado exitosamente ',
+        error:false
+    })
+
+
+    return 0;
+}
+
 
 export{
     formularioLogin,
@@ -211,6 +288,8 @@ export{
     formularioRegister,
     register,
     confirm,
+    updatePassword,
+    verifyTokenPasswordChange,
     formularioPasswordRecovery,
     resetPassword
 }

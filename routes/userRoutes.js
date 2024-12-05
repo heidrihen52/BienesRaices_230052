@@ -1,5 +1,5 @@
 import express, { application, request, response } from'express'
-import { formularioLogin, formularioRegister,login,register,confirm,formularioPasswordRecovery,resetPassword } from '../controllers/userController.js';
+import { formularioLogin, formularioRegister,login,register,confirm,formularioPasswordRecovery,verifyTokenPasswordChange,updatePassword,resetPassword } from '../controllers/userController.js';
 const router=express.Router();
 
 //Get se utiliza para lalectura de datos e informacion
@@ -12,6 +12,7 @@ router.get("/findByID/:id",function(request, response){
 //" componentes de una peticion ruta(a donde voy), funcion callback(que hago)
 
 //POST se utiliza para el envio de datos e info del cliente al server
+
 router.post("/newUser/:name/:email/:password",function(req,res){
     res.send(`Se gha solicitado la creación de un nuevo usuario de nombre: ${req.params.name}, asociado al correo electronico: ${req.params.email}, con la contraseña: ${req.params.password}`)
 })
@@ -43,6 +44,10 @@ router.post("/createAccount",register)
 router.get("/confirm/:token",confirm)
 router.get("/passwordrecovery",formularioPasswordRecovery)
 router.post("/passwordrecovery",resetPassword)
+
+//Actualizar contraseña
+router.get("/passwordrecovery/:token",verifyTokenPasswordChange) //
+router.post("/passwordrecovery/:token",updatePassword)
 
 export default router;
 

@@ -28,7 +28,15 @@
         beforeCreate: async function (user) {
             const salt = await bcrypt.genSalt(10)
             user.password = await bcrypt.hash(user.password, salt);
+        },
+        beforeUpdate: async function (user) {
+            //verificar si existe un token y este confirmado
+
+            //Generamos la clave para el hasheo
+            const salt = await bcrypt.genSalt(10)
+            user.password = await bcrypt.hash(user.password, salt);
         }
+        
     }
  }
 )
